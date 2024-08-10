@@ -1,3 +1,5 @@
+use crate::Message::{ChangeColor, Echo, Move, Resize, Quit};
+
 struct Point {
     x: u64,
     y: u64,
@@ -5,6 +7,14 @@ struct Point {
 
 enum Message {
     // TODO: Implement the message variant types based on their usage below.
+    Resize {
+        width: u64,
+        height: u64,
+    },
+    Move(Point),
+    Echo(String),
+    ChangeColor(u8, u8, u8),
+    Quit,
 }
 
 struct State {
@@ -42,6 +52,15 @@ impl State {
     fn process(&mut self, message: Message) {
         // TODO: Create a match expression to process the different message
         // variants using the methods defined above.
+        match message {
+            Resize { width, height } => {
+                self.resize(width, height)
+            }
+            Move(p) => self.move_position(p),
+            Echo(p) => self.echo(p),
+            ChangeColor(r, g, b) => self.change_color(r, g, b),
+            Quit => self.quit()
+        }
     }
 }
 
