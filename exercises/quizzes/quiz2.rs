@@ -55,6 +55,7 @@ fn main() {
 
 #[cfg(test)]
 mod tests {
+    use crate::my_module::transformer;
     // TODO: What do we need to import to have `transformer` in scope?
     // use ???;
     use super::Command;
